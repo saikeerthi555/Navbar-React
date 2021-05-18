@@ -28,12 +28,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex"
   },
   formControl: {
-    margin: theme.spacing(1),
     minWidth: 200,
     display: "flex",
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
-    padding: theme.spacing(0, 1)
+    alignItems: "flex-start",
+    justifyContent: "flex-end"
   },
 
   appBar: {
