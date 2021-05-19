@@ -14,26 +14,19 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
+import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex"
   },
-  formControl: {
-    minWidth: 200,
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "flex-end"
-  },
-
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
@@ -42,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
     })
   },
   appBarShift: {
-    marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -50,7 +42,11 @@ const useStyles = makeStyles((theme) => ({
     })
   },
   menuButton: {
-    marginRight: 36
+    marginRight: theme.spacing(2)
+  },
+  avatorIcon: {
+    display: "flex",
+    justifyContent: "space-between"
   },
   hide: {
     display: "none"
@@ -81,10 +77,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "flex-end",
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar
+    justifyContent: "flex-end"
   },
   content: {
     flexGrow: 1,
@@ -96,17 +89,15 @@ export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [state, setState] = React.useState({
-    age: "",
-    name: "hai"
-  });
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const wideopen = Boolean(anchorEl);
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    setState({
-      ...state,
-      [name]: event.target.value
-    });
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   const handleDrawerOpen = () => {
@@ -141,23 +132,35 @@ export default function MiniDrawer() {
           <Typography variant="h6" noWrap>
             Mini variant drawer
           </Typography>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="age-native-simple">Age</InputLabel>
-            <Select
-              native
-              value={state.age}
-              onChange={handleChange}
-              inputProps={{
-                name: "age",
-                id: "age-native-simple"
-              }}
+          <div className={classes.avatorIcon}>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
             >
-              <option aria-label="None" value="" />
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-            </Select>
-          </FormControl>
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right"
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right"
+              }}
+              open={wideopen}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
