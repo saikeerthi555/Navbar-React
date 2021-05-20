@@ -44,17 +44,14 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2)
   },
-  avatorIcon: {
-    display: "flex",
-    justifyContent: "space-between"
-  },
   hide: {
     display: "none"
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: "nowrap"
+    whiteSpace: "nowrap",
+    colour: "#fff"
   },
   drawerOpen: {
     width: drawerWidth,
@@ -82,6 +79,11 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
+  },
+  avatorIcon: {
+    flexGrow: 1,
+    display: "flex",
+    justifyContent: "space-between"
   }
 }));
 
@@ -129,10 +131,8 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Mini variant drawer
-          </Typography>
           <div className={classes.avatorIcon}>
+            <h3>Mini variant drawer</h3>
             <IconButton
               aria-label="account of current user"
               aria-controls="menu-appbar"
