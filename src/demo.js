@@ -6,7 +6,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -20,6 +19,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import logo from "./logo.png";
 
 const drawerWidth = 200;
 
@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex"
   },
   appBar: {
+    backgroundColor: "#fff",
+    color: "black",
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -76,14 +78,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "flex-end"
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3)
-  },
   avatorIcon: {
     flexGrow: 1,
     display: "flex",
     justifyContent: "space-between"
+  },
+  logo: {
+    maxWidth: "10%",
+    minHeight: "10%",
+    margin: "10px"
   }
 }));
 
@@ -132,7 +135,8 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <div className={classes.avatorIcon}>
-            <h3>Mini variant drawer</h3>
+            <img src={logo} alt="logo" className={classes.logo} />
+
             <IconButton
               aria-label="account of current user"
               aria-controls="menu-appbar"
