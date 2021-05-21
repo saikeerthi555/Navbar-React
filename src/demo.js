@@ -84,9 +84,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between"
   },
   logo: {
-    maxWidth: "10%",
+    maxWidth: "20%",
     minHeight: "10%",
-    margin: "10px"
+    margin: "5px"
   }
 }));
 
